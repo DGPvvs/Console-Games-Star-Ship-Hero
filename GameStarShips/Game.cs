@@ -40,7 +40,7 @@
 			else
 			{
 				var firstEpizod = GetEpizdById(testData.CurrentEpizode);
-				this.playerStatus = testData.playerStatus;
+				this.playerStatus = testData.PlayerStatus;
 
 				if (firstEpizod == null)
 				{
@@ -91,7 +91,11 @@
 
 		private void SaveGame()
 		{
-			throw new NotImplementedException();
+			var projectDir = GetProjectDirectory();
+
+			string jsonPath = projectDir + @"save.json";
+
+			DataProcessor.Serializer.ImportPayerStatus(jsonPath, ref this.playerStatus);
 		}
 
 		public void StartUpNewGame()
@@ -116,10 +120,8 @@
 			string separator = " or ";
 			string path = @"M:\C#\StarProba\StarBase\ConvertFromText\ConvertFromTextToJson\bin\Debug\net6.0\star.txt";
 			//string jsonPath = @"M:\C#\StarProba\StarBase\StarBase\bin\Debug\net6.0\star.json";
-			string jsonPath = projectDir + @"star.json";
-
-			string patternEpisode = @"((Id : (?<Id>(\d+))(\nDecription : )(?<Decription>(.+\n)+)(ConditionFlags : )(?<ConditionFlags>(\d+))(\n)(ConditionValue : )(?<ConditionValue>(\d+))(\n)(ConditionValue2 : )(?<ConditionValue2>(\d+))(\n)(ConditionValue3 : )(?<ConditionValue3>(\d+))(\n)))";
-			string patternTargetEpiside = @"((EpizodeId : )(?<EpizodeId>(\d+))(\n)+(ChoisEpizodeId : )(?<ChoisEpizodeId>(\d+))(\n)+(ChoisPoint : )(?<ChoisPoint>(\d+))(\n)+(Decription : )(?<Decription>(.*))(\n)*(PostActionFlags : )(?<PostActionFlags>(\d+))(\n)+(ActionValue : )(?<ActionValue>(\d+))(\n)+(PreActionFlags : )(?<PreActionFlags>(\d+))(\n)+(VisibleValue : )(?<VisibleValue>(\d+))(\n)+)";
+			string jsonPath = projectDir + @"star.json";			
+			
 			//BookText b = new BookText();
 
 			Dictionary<int, Epizod> list = new Dictionary<int, Epizod>();

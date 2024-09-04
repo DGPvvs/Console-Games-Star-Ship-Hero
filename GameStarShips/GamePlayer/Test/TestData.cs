@@ -5,16 +5,18 @@
 
 	public class TestData : ITestData
 	{
-		public TestData(int currentEpizode, PlayerStatus playerStatus)
+		public TestData(int currentEpizode, PlayerStatus playerStatus, bool isLoad)
 		{
 			this.CurrentEpizode = currentEpizode;
-			this.playerStatus = playerStatus;
+			this.PlayerStatus = playerStatus;
+			this.IsLoad = isLoad;
 		}
 
 		public int CurrentEpizode { get; set; }
 
-		public PlayerStatus playerStatus { get; set; }
+		public PlayerStatus PlayerStatus { get; set; }
 
+		public bool IsLoad { get; private set; }
 	}
 
 }

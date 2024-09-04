@@ -6,6 +6,8 @@
 	{
 		public int CurrentEpizode { get; }
 
-		public PlayerStatus playerStatus { get; }
+		public PlayerStatus PlayerStatus { get; }
+
+		public bool IsLoad { get; }
 	}
 }
