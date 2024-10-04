@@ -12,14 +12,17 @@
 
 	public class Game
 	{
-		private readonly IRead read;
-		private readonly IWrite write;
+		private readonly IRead? read;
+		private readonly IWrite? write;
 		private Dictionary<int, Epizod> baseBook;
-		private PlayerStatus playerStatus;
+		private PlayerStatus? playerStatus;
+		private readonly ITestData testData;
+
 
 		public Game()
 		{
 			this.baseBook = this.SetBase()!;
+			this.testData = null;
 		}
 
 
@@ -31,16 +34,27 @@
 
 		public Game(IRead read, IWrite write, ITestData? testData = null) : this(read, write)
 		{
-			this.playerStatus = new PlayerStatus();
+			this.PlayerStatus = new PlayerStatus();
+
+			this.testData = testData;
 
 			if (testData == null)
 			{
 				this.StartUpNewGame();
 			}
+			else if (testData.IsLoad)
+			{
+				this.PlayerStatus = this.LoadGame();
+
+				var firstEpizod = GetEpizdById(this.PlayerStatus.CurrentEpizodeIndex);
+				this.GameStatus = GameStatusEnum.InAction;
+
+				this.SetCurrentEpizod(firstEpizod);
+			}
 			else
 			{
 				var firstEpizod = GetEpizdById(testData.CurrentEpizode);
-				this.playerStatus = testData.PlayerStatus;
+				this.PlayerStatus = testData.PlayerStatus;
 
 				if (firstEpizod == null)
 				{
@@ -51,7 +65,7 @@
 
 				this.SetCurrentEpizod(firstEpizod);
 			}
-		}
+		}		
 
 		public IRead Read => this.read;
 
@@ -59,6 +73,8 @@
 
 		public EpizodeModel CurrentEpizodeModel { get; set; }
 		public GameStatusEnum GameStatus { get; set; }
+
+		public PlayerStatus PlayerStatus { get; private set; }
 
 		public void Run()
 		{
@@ -70,12 +86,18 @@
 
 		public void GameAction()
 		{
-			int nextEpizod = this.EpizodeCondition();
+			int nextEpizod = !this.PlayerStatus.IsCurrentExecut ? this.EpizodeCondition() : 0;			
 
 			if (nextEpizod == 0)
 			{
-				this.SetPreActionCondition();
+				if (!this.PlayerStatus.IsCurrentExecut)
+				{
+					this.SetPreActionCondition();
+					this.PlayerStatus.IsCurrentExecut = true;
+				}
+
 				this.PrintEpisodeDescription();
+
 				ChoisesModel choisAction = this.PrintActionChoise();
 				nextEpizod = this.SetPostActionCondition(choisAction);
 			}
@@ -95,7 +117,16 @@
 
 			string jsonPath = projectDir + @"save.json";
 
-			DataProcessor.Serializer.ImportPayerStatus(jsonPath, ref this.playerStatus);
+			DataProcessor.Serializer.ImportPayerStatus(jsonPath, this.PlayerStatus);
+		}
+
+		private PlayerStatus LoadGame()
+		{
+			var projectDir = GetProjectDirectory();
+
+			string jsonPath = projectDir + @"save.json";
+
+			return  DataProcessor.Deserializer.LoadEpizodes(File.ReadAllText(jsonPath));
 		}
 
 		public void StartUpNewGame()
@@ -107,7 +138,7 @@
 				throw new Exception();
 			}
 
-			this.playerStatus.InitNewPlayerStatus();
+			this.PlayerStatus.InitNewPlayerStatus();
 			this.GameStatus = GameStatusEnum.InAction;
 
 			this.SetCurrentEpizod(firstEpizod);
@@ -117,12 +148,7 @@
 		{
 			var projectDir = GetProjectDirectory();
 
-			string separator = " or ";
-			string path = @"M:\C#\StarProba\StarBase\ConvertFromText\ConvertFromTextToJson\bin\Debug\net6.0\star.txt";
-			//string jsonPath = @"M:\C#\StarProba\StarBase\StarBase\bin\Debug\net6.0\star.json";
-			string jsonPath = projectDir + @"star.json";			
-			
-			//BookText b = new BookText();
+			string jsonPath = projectDir + @"star.json";
 
 			Dictionary<int, Epizod> list = new Dictionary<int, Epizod>();
 
@@ -168,48 +194,48 @@
 				}
 				else if (condition.HasFlag(ConditionFlagsEnum.SecondChecksumЕqualToConditionValue))
 				{
-					int value = this.CurrentEpizodeModel.ConditionValue - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2];
+					int value = this.CurrentEpizodeModel.ConditionValue - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2];
 					condition = this.AddConditionValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex2, ConditionFlagsEnum.SecondChecksumЕqualToConditionValue);
 				}
 				else if (condition.HasFlag(ConditionFlagsEnum.ThitdChecksumЕqualToConditionValue2))
 				{
-					int value = this.CurrentEpizodeModel.ConditionValue2 - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3];
+					int value = this.CurrentEpizodeModel.ConditionValue2 - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3];
 					condition = this.AddConditionValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex3, ConditionFlagsEnum.ThitdChecksumЕqualToConditionValue2);
 				}
 				else if (condition.HasFlag(ConditionFlagsEnum.SeventhChecksumEqualToOthersEqualToZero))
 				{
 					this.AllChecksumsAreZero();
-					int value = this.CurrentEpizodeModel.ConditionValue - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex7];
+					int value = this.CurrentEpizodeModel.ConditionValue - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex7];
 					condition = this.AddConditionValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex7, ConditionFlagsEnum.SeventhChecksumEqualToOthersEqualToZero);
 				}
 				else if (condition.HasFlag(ConditionFlagsEnum.SixthChecksumEqualToConditionValue))
 				{
-					int value = this.CurrentEpizodeModel.ConditionValue - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex6];
+					int value = this.CurrentEpizodeModel.ConditionValue - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex6];
 					condition = this.AddConditionValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex6, ConditionFlagsEnum.SixthChecksumEqualToConditionValue);
 				}
 				else if (condition.HasFlag(ConditionFlagsEnum.SeventhChecksumEqualToConditionValue3))
 				{
-					int value = this.CurrentEpizodeModel.ConditionValue3 - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex7];
+					int value = this.CurrentEpizodeModel.ConditionValue3 - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex7];
 					condition = this.AddConditionValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex7, ConditionFlagsEnum.SeventhChecksumEqualToConditionValue3);
 				}
 				else if (condition.HasFlag(ConditionFlagsEnum.EighthChecksumEqualToConditionValue))
 				{
-					int value = this.CurrentEpizodeModel.ConditionValue - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex8];
+					int value = this.CurrentEpizodeModel.ConditionValue - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex8];
 					condition = this.AddConditionValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex8, ConditionFlagsEnum.EighthChecksumEqualToConditionValue);
 				}
 				else if (condition.HasFlag(ConditionFlagsEnum.NinthChecksumEqualToConditionValue2))
 				{
-					int value = this.CurrentEpizodeModel.ConditionValue2 - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex9];
+					int value = this.CurrentEpizodeModel.ConditionValue2 - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex9];
 					condition = this.AddConditionValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex9, ConditionFlagsEnum.NinthChecksumEqualToConditionValue2);
 				}
 				else if (condition.HasFlag(ConditionFlagsEnum.FirstChecksumEqualToConditionValue))
 				{
-					int value = this.CurrentEpizodeModel.ConditionValue - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1];
+					int value = this.CurrentEpizodeModel.ConditionValue - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1];
 					condition = this.AddConditionValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex1, ConditionFlagsEnum.FirstChecksumEqualToConditionValue);
 				}
 				else if (condition.HasFlag(ConditionFlagsEnum.FifthChecksumEqualToConditionValue2))
 				{
-					int value = this.CurrentEpizodeModel.ConditionValue2 - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5];
+					int value = this.CurrentEpizodeModel.ConditionValue2 - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5];
 					condition = this.AddConditionValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex5, ConditionFlagsEnum.FifthChecksumEqualToConditionValue2);
 				}
 				else if (condition.HasFlag(ConditionFlagsEnum.AddConditionValueToFifthChecksum))
@@ -261,7 +287,7 @@
 					if (condition.HasFlag(PreActionFlagsEnum.IfFifthChecksumIsGreaterOrEqualToActionValue))
 					{
 						action.PreActionFlags = PreActionFlagsEnum.Disable;
-						if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] >= action.ActionValue)
+						if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] >= action.ActionValue)
 						{
 							action.PreActionFlags = PreActionFlagsEnum.Enable;
 						}
@@ -272,7 +298,7 @@
 					else if (condition.HasFlag(PreActionFlagsEnum.IfSixthChecksumIsGreaterThanActionValue))
 					{
 						action.PreActionFlags = PreActionFlagsEnum.Disable;
-						if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex6] > action.ActionValue)
+						if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex6] > action.ActionValue)
 						{
 							action.PreActionFlags = PreActionFlagsEnum.Enable;
 						}
@@ -283,7 +309,7 @@
 					else if (condition.HasFlag(PreActionFlagsEnum.IfFourthChecksumIsEqualToActionValue))
 					{
 						action.PreActionFlags = PreActionFlagsEnum.Disable;
-						if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex4] == action.ActionValue)
+						if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex4] == action.ActionValue)
 						{
 							action.PreActionFlags = PreActionFlagsEnum.Enable;
 						}
@@ -294,7 +320,7 @@
 					else if (condition.HasFlag(PreActionFlagsEnum.IfThirdChecksumIsGreaterOrEqualToActionValue))
 					{
 						action.PreActionFlags = PreActionFlagsEnum.Disable;
-						if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3] >= action.ActionValue)
+						if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3] >= action.ActionValue)
 						{
 							action.PreActionFlags = PreActionFlagsEnum.Enable;
 						}
@@ -305,8 +331,8 @@
 					else if (condition.HasFlag(PreActionFlagsEnum.IfTheFirstChecksumIsEqualToActionValueOrEequalToVisibleValue))
 					{
 						action.PreActionFlags = PreActionFlagsEnum.Disable;
-						if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] == action.ActionValue ||
-						   this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] == action.VisibleValue)
+						if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] == action.ActionValue ||
+						   this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] == action.VisibleValue)
 						{
 							action.PreActionFlags = PreActionFlagsEnum.Enable;
 						}
@@ -317,8 +343,8 @@
 					else if (condition.HasFlag(PreActionFlagsEnum.IfFirstChecksumIsDifferentFromActionValueAndDifferentFromVisibleValue))
 					{
 						action.PreActionFlags = PreActionFlagsEnum.Disable;
-						if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] != action.ActionValue &&
-						   this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] != action.VisibleValue)
+						if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] != action.ActionValue &&
+						   this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] != action.VisibleValue)
 						{
 							action.PreActionFlags = PreActionFlagsEnum.Enable;
 						}
@@ -329,7 +355,7 @@
 					else if (condition.HasFlag(PreActionFlagsEnum.IfFifthChecksumIsEqualToActionValue))
 					{
 						action.PreActionFlags = PreActionFlagsEnum.Disable;
-						if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] == action.ActionValue)
+						if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] == action.ActionValue)
 						{
 							action.PreActionFlags = PreActionFlagsEnum.Enable;
 						}
@@ -340,7 +366,7 @@
 					else if (condition.HasFlag(PreActionFlagsEnum.IfFirstChecksumIsGreaterThanActionValue))
 					{
 						action.PreActionFlags = PreActionFlagsEnum.Disable;
-						if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] > action.ActionValue)
+						if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] > action.ActionValue)
 						{
 							action.PreActionFlags = PreActionFlagsEnum.Enable;
 						}
@@ -351,7 +377,7 @@
 					else if (condition.HasFlag(PreActionFlagsEnum.TottalResult))
 					{
 						action.PreActionFlags = PreActionFlagsEnum.Disable;
-						if (this.playerStatus.TottalResult >= action.ActionValue && this.playerStatus.TottalResult < action.VisibleValue)
+						if (this.PlayerStatus.TottalResult >= action.ActionValue && this.PlayerStatus.TottalResult < action.VisibleValue)
 						{
 							action.PreActionFlags = PreActionFlagsEnum.Enable;
 						}
@@ -378,7 +404,7 @@
 			{
 				if (condition.HasFlag(PostActionFlagsEnum.Checksum6ЕqualValue))
 				{
-					int value = choisAction.ActionValue - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex6];
+					int value = choisAction.ActionValue - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex6];
 					condition = this.AddPostValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex6, PostActionFlagsEnum.Checksum6ЕqualValue);
 				}
 				else if (condition.HasFlag(PostActionFlagsEnum.RandomSelection))
@@ -395,12 +421,12 @@
 				}
 				else if (condition.HasFlag(PostActionFlagsEnum.FifthChecksumEqualToToActionValue))
 				{
-					int value = choisAction.ActionValue - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5];
+					int value = choisAction.ActionValue - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5];
 					condition = this.AddPostValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex5, PostActionFlagsEnum.FifthChecksumEqualToToActionValue);
 				}
 				else if (condition.HasFlag(PostActionFlagsEnum.FirstChecksumEqualToToActionValue))
 				{
-					int value = choisAction.ActionValue - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1];
+					int value = choisAction.ActionValue - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1];
 					condition = this.AddPostValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex1, PostActionFlagsEnum.FirstChecksumEqualToToActionValue);
 				}
 				else if (condition.HasFlag(PostActionFlagsEnum.DoubleCheckingTheFourthChecksumWithActionValue))
@@ -409,7 +435,7 @@
 				}
 				else if (condition.HasFlag(PostActionFlagsEnum.SixthChecksumIncrease))
 				{
-					int value = (int)((100 - (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2] + this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3])) / 5);
+					int value = (int)((100 - (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2] + this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3])) / 5);
 					condition = this.AddPostValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex6, PostActionFlagsEnum.SixthChecksumIncrease);
 				}
 				else if (condition.HasFlag(PostActionFlagsEnum.SixthChecksumIncreaseWithActionValue))
@@ -426,7 +452,7 @@
 				}
 				else if (condition.HasFlag(PostActionFlagsEnum.FourthChecksumEqualToChoisPoint))
 				{
-					int value = choisAction.ChoisPoint - this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex4];
+					int value = choisAction.ChoisPoint - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex4];
 					condition = this.AddPostValueToChecksum(condition, value, CheckSumsIndexEnum.CheckSumsIndex4, PostActionFlagsEnum.FourthChecksumEqualToChoisPoint);
 				}
 				else if (condition.HasFlag(PostActionFlagsEnum.AddActionValueToFifthChecksum))
@@ -475,16 +501,19 @@
 				{
 					this.Write.WriteLine($"{row}. - {action.Decription}");
 					choiceOrder.Add(row);
+					//row++;
 				}
 
 				row++;
 			}
 
+			
+			
 			bool isLoopExit = false;
 
 			while (!isLoopExit)
 			{
-				string input = this.Read.ReadLine();
+				string input = this.Read.ReadLine()!;
 
 				bool corectChois = int.TryParse(input, out int chois);
 
@@ -497,7 +526,12 @@
 				else if (corectChois && (choiceOrder.Contains(chois)))
 				{
 					ActionDescription action = this.CurrentEpizodeModel.ActionsList.Skip(chois - 1).Take(1).ToList().First();
-					return new ChoisesModel(action.TargetEpizodeId, action.ChoisPoint, action.PostActionFlags, action.ActionValue, action.VisibleValue);
+					ChoisesModel newModel = new ChoisesModel(action.TargetEpizodeId, action.ChoisPoint, action.PostActionFlags, action.ActionValue, action.VisibleValue);
+
+					this.PlayerStatus.CurrentEpizodeIndex = newModel.TargetEpizodeId;
+					this.PlayerStatus.IsCurrentExecut = false;
+
+					return newModel;
 				}
 				else
 				{
@@ -516,9 +550,9 @@
 		//Condition Epizode Action
 		private ConditionFlagsEnum AllChecksumsAreZero(ConditionFlagsEnum condition = ConditionFlagsEnum.ZeroCondition)
 		{
-			for (int i = 0; i < this.playerStatus.Checksums.Length; i++)
+			for (int i = 0; i < this.PlayerStatus.Checksums.Length; i++)
 			{
-				this.playerStatus.Checksums[i] = 0;
+				this.PlayerStatus.Checksums[i] = 0;
 			}
 
 			ConditionFlagsEnum notb = ~ConditionFlagsEnum.AllChecksumsAreZero;
@@ -528,35 +562,35 @@
 
 		private ConditionFlagsEnum AddConditionValueToChecksum(ConditionFlagsEnum condition, int conditionValue, CheckSumsIndexEnum index, ConditionFlagsEnum flag)
 		{
-			this.playerStatus.Checksums[(int)index] += conditionValue;
+			this.PlayerStatus.Checksums[(int)index] += conditionValue;
 
 			return condition & ~(flag);
 		}
 
 		private ConditionFlagsEnum SecondAndThirdChecksumsMinusOneFirstAndFifthChecksumsZero(ConditionFlagsEnum condition, ConditionFlagsEnum flag)
 		{
-			this.playerStatus.PreviousValueChecksum1 = this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1];
-			this.playerStatus.PreviousValueChecksum5 = this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5];
+			this.PlayerStatus.PreviousValueChecksum1 = this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1];
+			this.PlayerStatus.PreviousValueChecksum5 = this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5];
 
-			this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] = 0;
-			this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] = 0;
+			this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] = 0;
+			this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] = 0;
 
-			this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2]--;
-			this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3]--;
+			this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2]--;
+			this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3]--;
 
 			return condition & ~(flag);
 		}
 
 		private ConditionFlagsEnum RestoreFirstAndFifthChecksums(ConditionFlagsEnum condition, ConditionFlagsEnum flag)
 		{
-			if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] == 0)
+			if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] == 0)
 			{
-				this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] = this.playerStatus.PreviousValueChecksum1;
+				this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] = this.PlayerStatus.PreviousValueChecksum1;
 			}
 
-			if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] == 0)
+			if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] == 0)
 			{
-				this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] = this.playerStatus.PreviousValueChecksum5;
+				this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] = this.PlayerStatus.PreviousValueChecksum5;
 			}
 
 			return condition & ~(flag);
@@ -564,7 +598,7 @@
 
 		private ConditionFlagsEnum IfFirstChecksumIsEqualToConditionValueOrConditionValue2OrConditionValue3(ConditionFlagsEnum condition, int value1, int value2, int value3, ConditionFlagsEnum flag)
 		{
-			int checkSum = this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1];
+			int checkSum = this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1];
 			if (checkSum == value1 || checkSum == value2 || checkSum == value3)
 			{
 				return this.AddConditionValueToChecksum(condition, 10, CheckSumsIndexEnum.CheckSumsIndex8, flag);
@@ -577,7 +611,7 @@
 		{
 			StringBuilder sb = new StringBuilder(this.CurrentEpizodeModel.Decription);
 
-			int hunters = 100 - (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2] + this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3]);
+			int hunters = 100 - (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2] + this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3]);
 
 			string s = $"Можеш да вземеш {hunters} ловци.{Environment.NewLine}";
 
@@ -599,7 +633,7 @@
 		//PostAction Functions
 		private PostActionFlagsEnum AddPostValueToChecksum(PostActionFlagsEnum condition, int conditionValue, CheckSumsIndexEnum index, PostActionFlagsEnum flag)
 		{
-			this.playerStatus.Checksums[(int)index] += conditionValue;
+			this.PlayerStatus.Checksums[(int)index] += conditionValue;
 
 			return condition & ~(flag);
 		}
@@ -617,7 +651,7 @@
 		private PostActionFlagsEnum DoubleCheckingTheSixthChecksumWithActionValue(PostActionFlagsEnum condition, ChoisesModel choisAction, PostActionFlagsEnum flag)
 		{
 			int epizodeMask = 0;
-			if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex6] == choisAction.ActionValue)
+			if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex6] == choisAction.ActionValue)
 			{
 				epizodeMask = this.MaskChois(choisAction.ChoisPoint, MaskOrder.MaskOfLow9Bits, MaskOrder.LowOrderMask);
 			}
@@ -634,11 +668,11 @@
 		private PostActionFlagsEnum TernaryCheckOfFirstChecksumWithActionValue(PostActionFlagsEnum condition, ChoisesModel choisAction, PostActionFlagsEnum flag)
 		{
 			int epizodeMask = 0;
-			if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] < choisAction.ActionValue)
+			if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] < choisAction.ActionValue)
 			{
 				epizodeMask = this.MaskChois(choisAction.ChoisPoint, MaskOrder.MaskOfLow9Bits, MaskOrder.LowOrderMask);
 			}
-			else if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] == choisAction.ActionValue)
+			else if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] == choisAction.ActionValue)
 			{
 				epizodeMask = this.MaskChois(choisAction.ChoisPoint, MaskOrder.MaskOfMiddle9Bits, MaskOrder.MediumOrderMask);
 			}
@@ -655,7 +689,7 @@
 		private PostActionFlagsEnum DoubleCheckingTheFourthChecksumWithActionValue(PostActionFlagsEnum condition, ChoisesModel choisAction, PostActionFlagsEnum flag)
 		{
 			int epizodeMask = 0;
-			if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex4] >= choisAction.ActionValue)
+			if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex4] >= choisAction.ActionValue)
 			{
 				epizodeMask = this.MaskChois(choisAction.ChoisPoint, MaskOrder.MaskOfLow9Bits, MaskOrder.LowOrderMask);
 			}
@@ -672,7 +706,7 @@
 		private PostActionFlagsEnum IfFifthChecksumIsGreaterOrEqualToActionValue(PostActionFlagsEnum condition, ChoisesModel choisAction, PostActionFlagsEnum flag)
 		{
 			int epizodeMask = 0;
-			if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] >= choisAction.ActionValue)
+			if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] >= choisAction.ActionValue)
 			{
 				epizodeMask = this.MaskChois(choisAction.ChoisPoint, MaskOrder.MaskOfLow9Bits, MaskOrder.LowOrderMask);
 			}
@@ -689,11 +723,11 @@
 		private PostActionFlagsEnum TernaryCheckOfFirstChecksumWithActionValueAndVisibleValue(PostActionFlagsEnum condition, ChoisesModel choisAction, PostActionFlagsEnum flag)
 		{
 			int epizodeMask = 0;
-			if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] < choisAction.ActionValue)
+			if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] < choisAction.ActionValue)
 			{
 				epizodeMask = this.MaskChois(choisAction.ChoisPoint, MaskOrder.MaskOfLow9Bits, MaskOrder.LowOrderMask);
 			}
-			else if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] < choisAction.VisibleValue)
+			else if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] < choisAction.VisibleValue)
 			{
 				epizodeMask = this.MaskChois(choisAction.ChoisPoint, MaskOrder.MaskOfMiddle9Bits, MaskOrder.MediumOrderMask);
 			}
@@ -710,7 +744,7 @@
 		private PostActionFlagsEnum IfTheSixthChecksumIsGreaterThanActionValue(PostActionFlagsEnum condition, ChoisesModel choisAction, PostActionFlagsEnum flag)
 		{
 			int epizodeMask = 0;
-			if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex6] > choisAction.ActionValue)
+			if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex6] > choisAction.ActionValue)
 			{
 				epizodeMask = this.MaskChois(choisAction.ChoisPoint, MaskOrder.MaskOfLow9Bits, MaskOrder.LowOrderMask);
 			}
@@ -727,8 +761,8 @@
 		private PostActionFlagsEnum IfTheFirstAndFifthChecksumsAreEqualToActionValue(PostActionFlagsEnum condition, ChoisesModel choisAction, PostActionFlagsEnum flag)
 		{
 			int epizodeMask = 0;
-			bool check = this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] == choisAction.ActionValue;
-			check = check && this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] == choisAction.ActionValue;
+			bool check = this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex1] == choisAction.ActionValue;
+			check = check && this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] == choisAction.ActionValue;
 			if (check)
 			{
 				epizodeMask = this.MaskChois(choisAction.ChoisPoint, MaskOrder.MaskOfLow9Bits, MaskOrder.LowOrderMask);
@@ -747,7 +781,7 @@
 		{
 			int maxRange = 1;
 
-			if (this.playerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] > choisAction.ActionValue)
+			if (this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex5] > choisAction.ActionValue)
 			{
 				maxRange = 3;
 			}
@@ -794,7 +828,7 @@
 			//	conditionFlags = conditionFlags | (ConditionFlagsEnum)conditionFlagsObj;
 			//}
 
-			this.CurrentEpizodeModel = new EpizodeModel(firstEpizod.Id, firstEpizod.Decription, firstEpizod.ConditionFlags, null, firstEpizod.ConditionValue, firstEpizod.ConditionValue2, firstEpizod.ConditionValue3, this.playerStatus);
+			this.CurrentEpizodeModel = new EpizodeModel(firstEpizod.Id, firstEpizod.Decription, firstEpizod.ConditionFlags, null, firstEpizod.ConditionValue, firstEpizod.ConditionValue2, firstEpizod.ConditionValue3, this.PlayerStatus);
 			this.SetActionsList(firstEpizod);
 		}
 
@@ -816,8 +850,17 @@
 
 		private int RandomChois(int maxRange)
 		{
-			Random rnd = new Random();
-			int r = rnd.Next(1, maxRange);
+			int r = 0;
+
+			if (!this.testData.IsTest)
+			{
+				Random rnd = new Random();
+				r = rnd.Next(1, maxRange);
+			}
+			else
+			{
+				r = this.testData.TestRandomChois;
+			}
 
 			//Console.WriteLine($"r {r}");
 			//Console.ReadLine();

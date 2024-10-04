@@ -1569,7 +1569,7 @@
     "ChoisEpisodes": [
       {
         "EpizodeId": 55,
-        "TargetEpizodeId": 56,
+        "TargetEpizodeId": 101,
         "ChoisPoint": 0,
         "Decription": "Ако ще отговориш на стрелбата.",
         "PostActionFlags": "Zero",

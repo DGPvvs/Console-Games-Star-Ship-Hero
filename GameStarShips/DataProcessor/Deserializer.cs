@@ -4,11 +4,28 @@
 	using GameStarShips.DataProcessor.Constants;
 	using GameStarShips.DataProcessor.ImportDto;
 	using GameStarShips.EpizodeModels;
+	using GameStarShips.GamePlayer.Models.PlayerModel;
 	using Newtonsoft.Json;
 	using System.ComponentModel.DataAnnotations;
-				
+	using System.Text.Json.Serialization;
+
 	public class Deserializer
 	{
+
+		public static PlayerStatus LoadEpizodes(string jsonString)
+		{
+			PlayerStatusDTO playerStatus = JsonConvert.DeserializeObject<PlayerStatusDTO>(jsonString);
+
+			return new PlayerStatus
+			{
+				Checksums = playerStatus.Checksums,
+				PreviousValueChecksum1 = playerStatus.PreviousValueChecksum1,
+				PreviousValueChecksum5 = playerStatus.PreviousValueChecksum5,
+				CurrentEpizodeIndex = playerStatus.CurrentEpizodeIndex,
+				IsCurrentExecut = true
+			};
+		}
+
 		public static void ImportEpizodes(string jsonString, ref Dictionary<int, Epizod> list)
 		{
 			EpizodeDto[] importSellersDto = JsonConvert.DeserializeObject<EpizodeDto[]>(jsonString);
@@ -156,6 +173,6 @@
 			var validationResult = new List<ValidationResult>();
 
 			return Validator.TryValidateObject(dto, validationContext, validationResult, true);
-		}
+		}		
 	}
 }

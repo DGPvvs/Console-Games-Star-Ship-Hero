@@ -1,15 +1,13 @@
 ﻿namespace GameStarShips.DataProcessor
 {
 	using GameStarShips.DataProcessor.ImportDto;
-	using GameStarShips.EpizodeModels;
 	using GameStarShips.GamePlayer.Models.PlayerModel;
 	using Newtonsoft.Json;
-	using System.ComponentModel.DataAnnotations;
 
 	public class Serializer
 	{
 
-		public static void ImportPayerStatus(string jsonString, ref PlayerStatus status)
+		public static void ImportPayerStatus(string jsonString, PlayerStatus status)
 		{
 			PlayerStatusDTO playerStatusDTO = new PlayerStatusDTO
 			{

@@ -23,6 +23,8 @@
 			game.Run();
 
 			writer.WriteLine("Hello, World!");
+
+			//var r = new WhereEnumerableIterator<IList<int>>();
 		}
 
 		private static ITestData ChoisStartUp()

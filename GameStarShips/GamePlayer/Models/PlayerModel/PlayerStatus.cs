@@ -22,9 +22,9 @@
 		public int PreviousValueChecksum1 { get; set; }
 		public int PreviousValueChecksum5 { get; set; }
 		public int CurrentEpizodeIndex { get; set; }
-		public bool IsCurrentExecut { get; private set; }
+		public bool IsCurrentExecut { get; set; }
 
-		public int TottalResult => (this.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2] + this.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2]) * 3 +
+		public int TottalResult => (this.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2] + this.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex3]) * 3 +
 									this.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex7] + this.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex8] +
 									this.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex9];
 		//PlayerStatus – Клас описващ текущото състояние на героя

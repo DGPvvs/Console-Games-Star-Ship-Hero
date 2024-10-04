@@ -9,5 +9,9 @@
 		public PlayerStatus PlayerStatus { get; }
 
 		public bool IsLoad { get; }
+
+		public bool IsTest {  get; }
+
+		public int TestRandomChois {  get; }
 	}
 }

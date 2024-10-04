@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleGames", "ConsoleGames.csproj", "{6B0A4DA5-93FA-40C7-8BED-391432E37005}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleGames", "ConsoleGames.csproj", "{6B0A4DA5-93FA-40C7-8BED-391432E37005}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStarShips", "..\GameStarShips\GameStarShips.csproj", "{EC374D54-ACC7-4DD7-8B73-47F0863C27E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStarShips", "..\GameStarShips\GameStarShips.csproj", "{EC374D54-ACC7-4DD7-8B73-47F0863C27E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGameStarShips", "..\TestGameStarShips\TestGameStarShips.csproj", "{AC919F76-30E1-406B-A1D4-689E26B2EB81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{EC374D54-ACC7-4DD7-8B73-47F0863C27E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC374D54-ACC7-4DD7-8B73-47F0863C27E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC374D54-ACC7-4DD7-8B73-47F0863C27E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC919F76-30E1-406B-A1D4-689E26B2EB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC919F76-30E1-406B-A1D4-689E26B2EB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC919F76-30E1-406B-A1D4-689E26B2EB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC919F76-30E1-406B-A1D4-689E26B2EB81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
