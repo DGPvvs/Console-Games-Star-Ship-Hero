@@ -2753,7 +2753,7 @@
         "ChoisPoint": 0,
         "Decription": "Можеш да използваш тежкия плазмен турбобластер.",
         "PostActionFlags": "Zero",
-        "ActionValue": 0,
+        "ActionValue": 1,
         "PreActionFlags": "IfFifthChecksumIsGreaterOrEqualToActionValue",
         "VisibleValue": 0
       },
@@ -2763,7 +2763,7 @@
         "ChoisPoint": 0,
         "Decription": "Можеш да използваш рентгеновия лазерен бластер.",
         "PostActionFlags": "Zero",
-        "ActionValue": 0,
+        "ActionValue": 1,
         "PreActionFlags": "IfFifthChecksumIsGreaterOrEqualToActionValue",
         "VisibleValue": 0
       },
@@ -2773,7 +2773,7 @@
         "ChoisPoint": 0,
         "Decription": "Можеш да използваш ракетната установка.",
         "PostActionFlags": "Zero",
-        "ActionValue": 0,
+        "ActionValue": 1,
         "PreActionFlags": "IfFifthChecksumIsGreaterOrEqualToActionValue",
         "VisibleValue": 0
       },
@@ -3382,8 +3382,8 @@
   {
     "Id": 126,
     "Decription": "Преди да тръгнете, има да решиш още един проблем — какво да правиш с ловците, които искат да ви придружат в акцията. Разбира се, водач и няколко носачи за екипировката са ти необходими обезателно, но останалите?\r\nДобре е да имаш на разположение една многобройна и горяща от желание за бой армия, но при критична ситуация необучените туземци могат да бъдат повече пречка, отколкото помощ. Вече си забелязал, че независимо от нечовешката си издръжливост, те са доста слаби физически, а и електрическите арбалети не са кой знае какво оръжие. За съжаление, от унищожените войници на картела сте взели само широкообхватни парализиращи бластери и няколко автоматични пистолета MAG 77, което е съвсем недостатъчно за сериозно сражение. Същото е и положението с трите стари термични бластера на племето — тежки, неудобни и с малък заряд.\r\nВсе пак крайното решение е твое. Можеш да вземеш 300 ловци, които искат да те придружат.\r\nЩе вземеш ли ловците?",
-    "ConditionFlags": "SixthChecksumEqualToConditionValue",
-    "ConditionValue": 60,
+    "ConditionFlags": "ZeroCondition",
+    "ConditionValue": 0,
     "ConditionValue2": 0,
     "ConditionValue3": 0,
     "ChoisEpisodes": [
@@ -8320,7 +8320,7 @@
     ]
   },
   {
-    "Id": 302,
+    "Id": 302, //Previous epizode is 112
     "Decription": "Ще вземеш ли допълнителен брой хора?",
     "ConditionFlags": "CalculatingTheNumberOfPeople",
     "ConditionValue": 0,
