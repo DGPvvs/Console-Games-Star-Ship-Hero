@@ -10861,5 +10861,2677 @@ namespace TestGameStarShips
 
 			Assert.AreEqual(expectedResult, factResult);
 		}
+
+		[Test]
+		public void TestEpizode129Chois1FourChecksumLess10ThrowException()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[4] = 9;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			Assert.Throws<OutOfMemoryException>( () => game.GameAction());			
+		}
+
+		[Test]
+		public void TestEpizode129Chois1FourChecksumMore10ThrowException()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[4] = 11;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			Assert.Throws<OutOfMemoryException>(() => game.GameAction());
+		}
+
+		[Test]
+		public void TestEpizode129Chois1()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[4] = 10;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Поставяш една от пластичните мини и като залягаш наблизо, активираш детонатора. Тежка приглушена експлозия избива вратата и с трясък я събаря. Веднага отвътре се посипва серия изстрели от електронни бластери, с които дефлекторите ви се справят великолепно.\r\nКакво решаваш? Може би случайно ви посрещат с толкова слабо оръжие и вероятно ще последва нещо по-мощно, а може и да не е случайно. Решението е твое.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode129Chois2FourChecksumLess20ThrowException()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[4] = 19;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			Assert.Throws<OutOfMemoryException>(() => game.GameAction());
+		}
+
+		[Test]
+		public void TestEpizode129Chois2FourChecksumMore20ThrowException()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[4] = 21;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			Assert.Throws<OutOfMemoryException>(() => game.GameAction());
+		}
+
+		[Test]
+		public void TestEpizode129Chois2()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[4] = 20;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Настройваш бластера на максимална мощност и като нареждаш на рейнджърите да се отдръпнат, забиваш лъча във вратата. Известно време металът се съпротивлява, като съска и пуши силно, но след няколко секунди плазменият лъч пробива вратата, която ненадейно хлътва навътре и с трясък се събаря. Веднага отвътре ви посрещат със стрелба от леки електронни бластери. Дефлекторите се справят отлично с опасността и настъпва кратко затишие.\r\nКакво решаваш? Може би случайно ви посрещат с толкова слабо оръжие и вероятно ще последва нещо по-мощно, а може и да не е случайно. Решението е твое.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode129Chois3FiveChecksumLess5ThrowException()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 3.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[5] = 4;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			Assert.Throws<OutOfMemoryException>(() => game.GameAction());
+		}
+
+		[Test]
+		public void TestEpizode129Chois3FiveChecksumEqual5ThrowException()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 3.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[5] = 5;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			Assert.Throws<OutOfMemoryException>(() => game.GameAction());
+		}
+
+		[Test]
+		public void TestEpizode129Chois3()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 3.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[5] = 6;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Сглобявате големия плазмен турбобластер и ти лично насочваш широкото дуло към вратата. Махваш с ръка на рейнджърите да се отдръпнат и като присвиваш очи, натискаш спусъка.\r\nСвистящ оглушително и ярко блестящ лъч излита от тежкото оръжие и с едно докосване помита масивната врата и спотаилата се отзад охрана на енергоцентралата.\r\nВръхлитате върху малобройните и стреснати от изстрела ти оператори на енергоцентралата и за няколко секунди се справяте с тях, без да загубиш нито един от хората си. Точно след портала се намира голяма, пълна с уреди командна зала. Мислено се поздравяваш за решението да не стреляш с ракетите. Системите са толкова стари и износени, че могат съвсем лесно да бъдат повредени.\r\n— Сержант, осигурете периметъра! Не допускайте охраната наблизо! Опасно е дори от един изстрел.\r\nСядаш на командния пулт и като се опитваш да се съсредоточиш, оглеждаш многобройните индикатори и скали. След внимателно проучване се уверяваш, че е невъзможно да се планира точно взривяването на реактора.\r\n— Командире, приближава голяма група войници и някаква тежка машина! — обажда се обезпокоен сержантът. Прилича на… това направо си е робот, военен суперклас!\r\nИ така, бързо мисли!";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode129Chois4FiveChecksumLess100ThrowException()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 4.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[5] = 99;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			Assert.Throws<OutOfMemoryException>(() => game.GameAction());
+		}
+
+		[Test]
+		public void TestEpizode129Chois4FiveChecksumEqual100()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 4.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[5] = 100;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Сглобявате и насочвате ракетната установка срещу вратата и ти сам дърпаш спусъка. С рев от насочващите тръби излита малка, но с много мощен заряд ракета и веднага се забива във вратата.\r\nСлучва се това обаче, от което си се опасявал — макар изстреляна от близко и с малка скорост, ракетата успява да пробие вратата и с оглушителен трясък се взривява вътре.\r\nЕстествено, моментално се сещаш какво ще последва и разнеслият се от залата механичен глас веднага го потвърждава:\r\n— ПОВРЕДА В ОСНОВНИТЕ СИСТЕМИ НА ЕНЕРГОБЛОКА. АВТОМАТИЧНАТА РЕМОНТНА СИСТЕМА НЕ РАБОТИ. ВЗРИВЯВАНЕ НА РЕАКТОРА СЛЕД ПЕТДЕСЕТ МИНУТИ. ВЕДНАГА ВСИЧКИ ДА СЕ ЕВАКУИРАТ!\r\n— Бързо, отдалечете се в джунглата! — нареждаш, когато се събирате навън. — Повредихме централата! Всеки момент ще се взриви!\r\nВтурвате се с всички сили към пробива в оградата, а там…";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode129Chois4FiveChecksumMore100()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 4.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[5] = 101;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Сглобявате и насочвате ракетната установка срещу вратата и ти сам дърпаш спусъка. С рев от насочващите тръби излита малка, но с много мощен заряд ракета и веднага се забива във вратата.\r\nСлучва се това обаче, от което си се опасявал — макар изстреляна от близко и с малка скорост, ракетата успява да пробие вратата и с оглушителен трясък се взривява вътре.\r\nЕстествено, моментално се сещаш какво ще последва и разнеслият се от залата механичен глас веднага го потвърждава:\r\n— ПОВРЕДА В ОСНОВНИТЕ СИСТЕМИ НА ЕНЕРГОБЛОКА. АВТОМАТИЧНАТА РЕМОНТНА СИСТЕМА НЕ РАБОТИ. ВЗРИВЯВАНЕ НА РЕАКТОРА СЛЕД ПЕТДЕСЕТ МИНУТИ. ВЕДНАГА ВСИЧКИ ДА СЕ ЕВАКУИРАТ!\r\n— Бързо, отдалечете се в джунглата! — нареждаш, когато се събирате навън. — Повредихме централата! Всеки момент ще се взриви!\r\nВтурвате се с всички сили към пробива в оградата, а там…";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode129Chois5ThirdChecksumLess5ThrowException()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 5.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[3] = 4;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			Assert.Throws<OutOfMemoryException>(() => game.GameAction());
+		}
+
+		[Test]
+		public void TestEpizode129Chois5ThirdChecksumEqual5()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 5.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[3] = 5;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Опасяваш се да не взривите преждевременно реактора на енергоблока. Затова, като се консултираш с кибернетика, решавате той да опита да отвори вратата.\r\nСлед няколко минути, подпомогнат от микрокомпютърния анализатор, той наистина се справя с ключалката и вратата се отваря.\r\nВеднага отвътре се посипва серия изстрели от електронни бластери, които убиват единствено незащитения с дефлектор кибернетик.\r\nКакво решаваш? Може би случайно ви посрещат с толкова слабо оръжие и вероятно ще последва нещо по-мощно, а може и да не е случайно. Решението е твое.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode129Chois5ThirdChecksumMore5()
+		{
+			int currEpizodeId = 129;
+			string currentChois = 5.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			this.playerStatus.Checksums[3] = 6;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Опасяваш се да не взривите преждевременно реактора на енергоблока. Затова, като се консултираш с кибернетика, решавате той да опита да отвори вратата.\r\nСлед няколко минути, подпомогнат от микрокомпютърния анализатор, той наистина се справя с ключалката и вратата се отваря.\r\nВеднага отвътре се посипва серия изстрели от електронни бластери, които убиват единствено незащитения с дефлектор кибернетик.\r\nКакво решаваш? Може би случайно ви посрещат с толкова слабо оръжие и вероятно ще последва нещо по-мощно, а може и да не е случайно. Решението е твое.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode130Chois1()
+		{
+			int currEpizodeId = 130;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+						
+			expectedPlayerStatus.Checksums[7] = 20;
+			expectedPlayerStatus.Checksums[8] = 10;
+			expectedPlayerStatus.Checksums[9] = 50;
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = " ";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode131Chois1()
+		{
+			int currEpizodeId = 131;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Решението за незабавна директна атака, колкото и да изглежда неразумно, се харесва на всички. За място на атаката избираш западната страна на оградата, близо до недовършения тунел на ловците. Изборът ти се основава главно на предположението, че там някъде е енергостанцията на комплекса. Тя представлява стар термоядрен магнито-хидродинамичен реактор от времето на империята, който е практически вечен и лесен за поддържане. Смяташ, че повреждането на системата за дозиране и контрол на реакцията ще предизвика мощен термоядрен взрив, който ще унищожи комплекса. Ако всичко върви добре, ще успеете да се измъкнете и отдалечите преди взрива.\r\nДори без да прибягвате до тежкото си въоръжение, лесно се справяте със защитната ограда и нахлувате в комплекса.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode131Chois2()
+		{
+			int currEpizodeId = 131;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "След като внимателно обхождате и наблюдавате комплекса, след два дни си в състояние да попълниш някои пропуски в картите. Сега сте и по-добре запознати със системата за охрана, от което се убеждаваш, че западната част на оградата е най-подходяща за замисленото нападение.\r\nВече си събрал и подготвил хората си, когато един от наблюдателите ти съобщава, че от комплекса на два открити транспортьора е излязла малка група войници. Движат се бързо на северозапад, което предполага, че имат задача да открият изчезналия „ловец на роби“.\r\nИ така, открива се нова възможност да ги проследиш и унищожиш в джунглата.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode132Chois1()
+		{
+			int currEpizodeId = 132;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "След като заседналите транспортьори и войниците са унищожени, бързо се връщаш при западната ограда на комплекса и започваш решително настъпление съвсем близо до недовършения тунел на ловците. Изборът ти се основава главно на обстоятелството, че там е енергостанцията на комплекса. Тя представлява стар термоядрен магнито-хидродинамичен реактор от времето на империята, който е практически вечен и лесен за поддържане. Смяташ, че повреждането на системата за дозиране и контрол на реакцията ще предизвика мощен термоядрен взрив, който ще унищожи комплекса. Ако всичко върви добре, ще успеете да се измъкнете и отдалечите преди взрива.\r\nДори без да прибягвате до тежкото си въоръжение, лесно се справяте със защитната ограда и нахлувате в комплекса.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode133Chois1()
+		{
+			int currEpizodeId = 133;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Първото нещо, изпречило се на пътя ви, е брониран патрулен робот, който съгласно заложената в него програма нарежда да се предадете. Преди още да довърши, една плазмена граната го превръща в пушеща купчина метал, но пък се задейства алармената система на комплекса. Оглушителен вой прониква навсякъде и един гръмък метален глас процепва въздуха:\r\n— НАПАДЕНИЕ СРЕЩУ СЕКТОРА НА ЕНЕРГОБЛОКА! ПРОБИТА Е ЗАЩИТНАТА СИСТЕМА! ВСИЧКИ БОЙНИ ГРУПИ И ПАТРУЛНИТЕ КОЛИ ДА СЕ НАСОЧАТ КЪМ РАЙОНА НА ПРОБИВА! ОБКРЪЖЕТЕ И ИЗОЛИРАЙТЕ СЕКТОРА! ВСИЧКИ ОБЕКТИ ОТ КЛАС „А“, „В“ И „С“ ДА БЪДАТ БЛОКИРАНИ!\r\n— Аха, попаднали сме точно на място! — отбелязваш доволен. Въпреки бързата реакция на системата за отбрана, охраната е напълно изненадана и неподготвена, което ти дава възможност да определиш обекта за атака. Но преди това…";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode134Chois1()
+		{
+			int currEpizodeId = 134;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Първото нещо, изпречило се на пътя ви, е брониран патрулен робот, който съгласно заложената в него програма нарежда да се предадете. Преди още да довърши, една плазмена граната го превръща в пушеща купчина метал, но пък се задейства алармената система на комплекса. Оглушителен вой прониква навсякъде и един гръмък метален глас процепва въздуха:\r\n— НАПАДЕНИЕ СРЕЩУ СЕКТОРА НА ЕНЕРГОБЛОКА! ПРОБИТА Е ЗАЩИТНАТА СИСТЕМА! ВСИЧКИ БОЙНИ ГРУПИ И ПАТРУЛНИТЕ КОЛИ ДА СЕ НАСОЧАТ КЪМ РАЙОНА НА ПРОБИВА! ОБКРЪЖЕТЕ И ИЗОЛИРАЙТЕ СЕКТОРА! ВСИЧКИ ОБЕКТИ ОТ КЛАС „А“, „В“ И „С“ ДА БЪДАТ БЛОКИРАНИ!\r\n— Аха, попаднали сме точно на място! — отбелязваш доволен. Въпреки бързата реакция на системата за отбрана, охраната е напълно изненадана и неподготвена, което ти дава възможност да определиш обекта за атака. Но преди това…";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode135Chois1()
+		{
+			int currEpizodeId = 135;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "— Внимание! Огън! — командваш без никакво колебание. — Опитайте се да излезете! Ти и ти, — посочваш двама рейнджъри — осигурете прикритие, останалите с мен!\r\nЯрките светкавици на бластерите за секунда повалят двамата, но третият, преди да падне поразен, успява също да стреля. Тежката стрела профучава край теб и се забива в ръката на кибернетика. Въпреки леката рана той изведнъж е обзет от силни гърчове и се строполява мъртъв на земята. Посегналият към него рейнджър се дръпва като опарен и като разтрива схваналите си пръсти, казва:\r\n— Това е някакъв акумулатор, лейтенант, и то много… — преди да завърши, друга стрела се забива в гърдите му и силният токов удар го отхвърля към стената на колибата, която се събаря с трясък.\r\nТуземците се оказват повече, а и вие сте пропуснали момента за нападение.\r\n— Бързо, разпръснете се! — викаш и в отчаян опит за пробив обсипваш невидимия си противник с дълга поредица от изстрели. За съжаление всичко е напразно, още няколко изпратени с убийствена точност стрели ви намират и слагат край на мисията ви. Вашата стрелба също е била резултатна, защото след кратката схватка оцеляват само трима от местните ловци. А те бяха дошли да ви предложат помощ.\r\nТака едно прибързано действие те проваля напълно и много години ще пречи на опитите на ФЕДЕРАЦИЯТА да приобщи местното население към нея.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode135Chois2()
+		{
+			int currEpizodeId = 135;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "— Не мърдайте! Никой да не стреля! — командваш тихо и внимателно наблюдаваш странните посетители.\r\nЗастаналият срещу теб човек изглежда не по-малко стреснат и е готов всеки момент да натисне спусъка. Ситуацията е толкова невероятна, че неволно се отпускаш и без повече да обръщаш внимание на застрашително насочения арбалет, се измъкваш от колибата и сядаш на земята.\r\n— Кой си пък ти, по дяволите? — произнасяш на глас, като добавяш високо: — Хайде излизайте, само внимателно и никаква стрелба! Намерихме местните, по-точно те ни намериха — уточняваш веднага.\r\n— Аз не дяволите, аз приятел! — обажда се ненадейно застаналият срещу теб ловец и като навежда арбалета, се приближава. Местният говори на архаичния универсален език със странен мелодичен акцент, но напълно разбираемо.\r\nСкоро около вас се събират останките от бойната ти група и десетина от местните ловци. След като набързо се уверявате взаимно в приятелските си намерения, по съвета на водача им бързо се отправяте навътре в джунглата. Доколкото си разбрал, те са видели неуспешната ви атака и сега са уверени, че сте приятели. По заповед на някакъв тайнствен „съвет на старейшините“ ви водят в едно от техните селища.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode136Chois1()
+		{
+			int currEpizodeId = 136;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Идеята да подложиш на изтребление толкова много хора не ти допада и настояваш да проникнете тайно през тунела под оградата.\r\n— Добре — съгласява се накрая главният старейшина на племето. — Ние ще довършим дупката. — И след като замълчава за малко, добавя гордо: — Доброволци ще се намерят дори повече, отколкото трябва. Те ще загинат, за да ви проправят път. Все пак бихме предпочели достойната смърт на една открита битка. — За разлика от обикновените ловци, той говори универсалния език чисто и без да прибягва до диалектни думи.\r\n— Ние не плаши от смърт под земята — обажда се и един от ловците. — Но вие как мине и оживее?\r\n— Никой няма да умира повече там — обясняваш им ти. — Ние имаме защита, която ще ни предпази от лъчението — показваш им колана с дефлектора. — Само да намерим начин да прикрием всички с един излъчвател.\r\nДумите ти са посрещнати с всеобщо задоволство, никой не може да бъде обвинен, че се страхува, но мисълта за ужасна мъчителна смърт под земята не е много приятна.\r\nСкоро всичко е готово. Копачите на тунела са избрани и защитата им е подсигурена. Бластерите са заредени и целта ви е определена — ще се опитате да проникнете в енергоцентралата и да я повредите. Според старейшините тя е стар термоядрен магнито-хидродинамичен реактор, който е практически вечен и лесен за поддържане. Двамата с кибернетика сте на мнение, че повреждането на системата за дозиране и контрол на реакцията ще предизвика мощен термоядрен взрив, който ще унищожи комплекса. Ако всичко върви добре, ще успеете да се измъкнете и отдалечите преди взрива.\r\nПреди да тръгнете става ясно, че голяма група ловци все пак ще ви придружи и ще се опита да ви помогне, ако бъдете разкрити преждевременно.\r\nВсе пак успехът на диверсията зависи до голяма степен от шанса ви.\r\nСпоред стратегическия разчет възможностите ви са:\r\n— 50% възможност за незабелязано проникване;\r\n— 95% възможност за успешно взривяване, ако не ви открият предварително;\r\n— 70% възможност за оцеляване на диверсионната група, ако не ви открият предварително;\r\n— 25% възможност за успешно взривяване, ако ви открият предварително;\r\n— 30% възможност за оцеляване на диверсионната група, ако ви открият предварително.\r\nВсе пак крайното решение е твое.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode136Chois2()
+		{
+			int currEpizodeId = 136;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "След като премислите подробно всичко, си принуден да се съгласиш с мнението на старейшините, че опитът за тайно проникване през тунела е прекалено рискован. Дори и да проникне успешно, една малка група може да бъде много лесно унищожена и тогава — край на всичко.\r\n— Съгласен съм, че всичко ще е въпрос на шанс — казваш накрая. — Но помисли колко хора ще загинат при такава, атака!\r\n— Ние не се плаши от смърт! — обажда се гордо един от ловците. — Ваша машина само пробие ограда…\r\nИ като разтърсва решително арбалета си, се обръща към останалите:\r\n— Ние победа!!!\r\n— Ние победа!!! — гръмко отговарят всички и по такъв начин слагат край на разискванията.\r\nОстава ви само да съставите щурмовата група и да определите обектите за атака след като проникнете в комплекса.\r\nРисковете на една такава атака са големи, но при успех можете не само да унищожите комплекса, но и ще имате възможност да потърсите и приберете научната документация от лабораториите.\r\nПланът на нападението е пределно прост.\r\nС помощта на преработения на оръдие двигател ще разрушите част от отбранителната система на комплекса. След това тримата рейнджъри и повечето от ловците нахлуват през отвора и пренасят сражението вътре в комплекса. Кибернетикът, охраняван от няколко ловци, прониква в енергостанцията и я подготвя за взривяване, а ти отиваш в лабораториите за научната документация.\r\nНаправеният стратегически разчет дава следните резултати:\r\n— 50% възможност за успех на пробива;\r\n— 30% възможност за протичане на операцията по план;\r\n— 70% възможност за успех при успешен пробив;\r\n— 0% възможност за успех при неуспешен пробив;\r\n— 50% загуби за атакуващата група.\r\nВсе пак крайното решение е твое.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode136Chois3()
+		{
+			int currEpizodeId = 136;
+			string currentChois = 3.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Дълго време не можете да се споразумеете за начина на действие. Ти силно се съмняваш, че една директна масирана атака ще доведе до успех, но не можеш да отречеш и големия риск, който крие проникването на една малка група. Накрая стигате до едно колкото рационално, толкова и жестоко по отношение на племето решение. А именно:\r\nЛовците на племето, подкрепени от преправения на оръдие корабен двигател и двама рейнджъри ще започнат демонстративна масирана атака от страната на бараките за роби. Ще се опитат да създадат впечатление, че искат да ги освободят. Докато охраната на комплекса отблъсква нападението, ти, заедно с един рейнджър, кибернетика и един от ловците за водач, ще се промъкнете незабелязано през предварително подготвения тунел и ще взривите енергостанцията на комплекса. Според старейшините тя е стар термоядрен магнито-хидродинамичен реактор, който е практически вечен и лесен за поддържане. Двамата с кибернетика сте на мнение, че повреждането на системата за дозиране и контрол на реакцията ще предизвика мощен термоядрен взрив, който ще унищожи комплекса. Разбира се, уговаряте сигнал за прекратяване на атаката и предвиждате време за оттегляне, но както всички разбираш, че повечето от вас, а може би и всички, сте обречени.\r\nСтратегическият разчет на операцията показва:\r\n— 75% възможност за незабелязано проникване на диверсионната група;\r\n— 95% възможност за успешно взривяване при незабелязано проникване;\r\n— 50% възможност за успешно взривяване при преждевременно откриване;\r\n— 30% възможност за оцеляване на диверсионната група след нападението;\r\n— 90% загуби за атакуващата група.\r\nВсе пак крайното решение е твое.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode137Chois1()
+		{
+			int currEpizodeId = 137;
+			string currentChois = 1.ToString();
+			bool isTest = true;
+			int testrandomChois = 1;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Най-после вратата се отваря, но и веднага се задейства алармата. Без повече колебание изваждате бластерите и под звуците и светлините на охранителната система с бой нахлувате в командната зала на енергоцентралата.\r\nИ така, превзел си най-важния обект на комплекса. Сигналната охранителна система е обявила всеобща тревога и атаката на охраната няма да закъснее. Нямаш достатъчно сили за сражение, затова бързо решавай.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode137Chois2()
+		{
+			int currEpizodeId = 137;
+			string currentChois = 1.ToString();
+			bool isTest = true;
+			int testrandomChois = 2;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Работата върви бързо, когато силен и ослепителен лъч светлина ви залива и гръмлив механичен глас проехтява:\r\n— ДОСТЪПЪТ ДО РАЙОНА НА ЦЕНТРАЛАТА Е ЗАБРАНЕН! ХВЪРЛЕТЕ ОРЪЖИЕТО И ИЗЧАКАЙТЕ ПАТРУЛА! ИМАТЕ ДЕСЕТ СЕКУНДИ ДА СЕ ПРЕДАДЕТЕ!\r\n— Какво става, по дяволите? — процежда през зъби един от рейнджърите.\r\nБърз поглед през рамо ти показва, че привидно спрялата патрулна машина е всъщност брониран охранителен автомат, който сега е насочил към вас целия си смъртоносен арсенал.\r\n— ДОСТЪПЪТ ДО РАЙОНА НА ЦЕНТРАЛАТА Е ЗАБРАНЕН! ХВЪРЛЕТЕ ОРЪЖИЕТО И ИЗЧАКАЙТЕ ПАТРУЛА! ИМАТЕ ПЕТ СЕКУНДИ ДА СЕ ПРЕДАДЕТЕ! — прогърмява отново гласът на робота.\r\nИ така, положението е почти безизходно, но все пак имаш време за едно последно действие.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode138Chois1()
+		{
+			int currEpizodeId = 138;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			expectedPlayerStatus.Checksums[1] = 0;
+			expectedPlayerStatus.Checksums[2] = 0;
+			expectedPlayerStatus.Checksums[3] = 0;
+			expectedPlayerStatus.Checksums[4] = 0;
+			expectedPlayerStatus.Checksums[5] = 0;
+			expectedPlayerStatus.Checksums[6] = 0;
+			expectedPlayerStatus.Checksums[7] = 0;
+			expectedPlayerStatus.Checksums[8] = 0;
+			expectedPlayerStatus.Checksums[9] = 0;
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = " ";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode139Chois1()
+		{
+			int currEpizodeId = 139;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "— Готово, лейтенант! — приближава се кибернетикът. — Да дам ли сигнал за оттегляне?\r\n— Дай го! — казваш и като му посочваш екраните, добавяш: — Едва ли някой ще се измъкне.\r\nСамо след няколко минути сте извън оградата и бързо се отдалечавате навътре в джунглата. Вече сте на повече от километър, когато могъщ тътен разтърсва земята. Експлозията на повредената централа помита комплекса и се стоварва тежко върху вас. Съвземаш се покрит с цял сантиметър спечена пръст и още тлеещи клонки. Джунглата около вас е опустошена от ядрения ураган, но за твоя радост и тримата сте живи. От мястото на комплекса огромен гъбовиден облак се е забил в ниското дъждовно небе и продължава да расте стремително.\r\n— Хайде да се махаме! — казваш уморено и всички бавно се отправяте към селото.\r\nЗадачата ти е изпълнена с цената на почти цялата ти група и неизвестно колко от ловците на племето. Сега не ти остава нищо друго, освен да изчакаш спасителната капсула от крайцера.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode140Chois1()
+		{
+			int currEpizodeId = 140;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Един кратък поглед към мониторите ти показва бързото приближаване на почти цялата охрана. Те също разбират какво ще стане, ако веднага не ви спрат. Докато рейнджърите ги отблъскват, прикрити до разбитата врата, ти разрушаваш системата за контрол на реакцията.\r\nОхраната на комплекса с отчаяна самоубийствена атака превзема входа и нахлува в залата, когато мощна експлозия на прегрелия реактор помита всичко в радиус от няколко километра. Огромен гъбовиден облак се издига високо и се забива в дъждовното небе.\r\nСвидетел на страшната катастрофа е само групата местни ловци, които трябваше да ви помогнат при отстъплението. Когато земята спира да трепти под краката им те бързо се отправят към селото, за да занесат новината.\r\nИзпълнил си задачата с цената на твоя и на екипажа живот.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode140Chois2()
+		{
+			int currEpizodeId = 140;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Натискаш няколко клавиша по пулта и след като се бавиш известно време със старите системи за насочване, настройваш мониторите за визуален контрол. Положението наистина се оказва сериозно. Повече от петдесет войници, разпръснати в широка верига, настъпват стремително към енергоцентралата. Пред тях тежко се поклаща ниска масивна машина, окичена с цял арсенал оръжия. Веднага разпознаваш военния робот от суперклас — бойна машина с електронен мозък, способен да взема самостоятелни решения, бърз, интелигентен и силно въоръжен. Със защитното му поле и дебелата броня могат да се справят само тежкият турбобластер или мощният рентгенов лазер. По фланговете на веригата, малко по-назад, се виждат и няколко полицейски патрулни робота.\r\nМалката ти диверсионна група трудно може да се справи с новата опасност, а да търсиш помощ няма време. Така че решавай.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode141Chois1()
+		{
+			int currEpizodeId = 141;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 7;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Веднъж взел решението да държиш хората си заедно, ти даваш няколко бързи команди и се насочваш към първата ти цел — енергоцентралата. Разпръсвате се в широк, колкото ти позволява броят на хората, фронт и заедно с няколкото придружаващи ви ловци стремително нападаш.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode141Chois2()
+		{
+			int currEpizodeId = 141;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Смяташ, че атаката ще бъде по-ефективна, ако нападнете едновременно поне два обекта (за повече нямаш хора) и така да объркате охраната. Премисляш още веднъж всичко и:";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode142Chois1()
+		{
+			int currEpizodeId = 142;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			expectedPlayerStatus.Checksums[1] = 0;
+			expectedPlayerStatus.Checksums[2] = 0;
+			expectedPlayerStatus.Checksums[3] = 0;
+			expectedPlayerStatus.Checksums[4] = 0;
+			expectedPlayerStatus.Checksums[5] = 0;
+			expectedPlayerStatus.Checksums[6] = 0;
+			expectedPlayerStatus.Checksums[7] = 0;
+			expectedPlayerStatus.Checksums[8] = 0;
+			expectedPlayerStatus.Checksums[9] = 0;
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = " ";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode143Chois1()
+		{
+			int currEpizodeId = 143;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			expectedPlayerStatus.Checksums[1] = 0;
+			expectedPlayerStatus.Checksums[2] = 0;
+			expectedPlayerStatus.Checksums[3] = 0;
+			expectedPlayerStatus.Checksums[4] = 0;
+			expectedPlayerStatus.Checksums[5] = 0;
+			expectedPlayerStatus.Checksums[6] = 0;
+			expectedPlayerStatus.Checksums[7] = 0;
+			expectedPlayerStatus.Checksums[8] = 0;
+			expectedPlayerStatus.Checksums[9] = 0;
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = " ";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode144Chois1()
+		{
+			int currEpizodeId = 144;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "След няколко напрегнати дни на подготовка и тежък петдневен преход през джунглата малката бойна група е залегнала в самия край на преминаващия под оградата тунел и с нетърпение очаква признаците на започналата атака.\r\nСлед като решението да прибегнете до отвличаща атака е взето окончателно, племето се заема с всички сили да ви помогне и подсигури, доколкото му позволяват възможностите. При катастрофата сте загубили основното си въоръжение, въпреки това категорично отказваш да вземеш тежките и неудобни термични бластери на ловците. Леките и безшумни електрически арбалети ти се струват много по-ефикасни за тайна диверсия; те, заедно с внушителен комплект стрели и личните ви бластери, ще бъдат единственото ви оръжие. За преодоляване на непредвидени препятствия от няколко плазмени акумулатора сте сглобили нещо като термична мина. Като прибавите и джобния микрокомпютърен анализатор на кибернетика, това е всичко, с което разполагате.\r\nТочно пред вас, само на десетина метра, е спряла автоматична бронирана патрулна кола и препречва пътя към енергоцентралата. Ако не се махне, привлечена от демонстративната атака в другия край на комплекса, ще трябва да похабите термичната мина за унищожаването й.\r\n— Започна се, командире — обажда се възбудено лежащият зад теб кибернетик. — Това е нашето оръдие.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode144Chois2()
+		{
+			int currEpizodeId = 144;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "И така, съществуват три възможни варианта за действие и само върху теб пада отговорността на правилния избор.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode145Chois1()
+		{
+			int currEpizodeId = 145;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Унищожили сте част от противниковите сили, но комплексът си остава една снабдена с най-модерни средства за защита крепост. Там обезателно ще се разтревожат от липсата на „ловеца“ и ще вдигнат тревога. Разбира се, може да решат, че е станала катастрофа или е повреден от местните — нали там никой не знае за вас. Но каквото и да мислят, непременно ще засилят мерките за сигурност.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode146Chois1()
+		{
+			int currEpizodeId = 146;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Първото нещо, изпречило се на пътя ви, е брониран патрулен робот, който съгласно заложената в него програма нарежда да се предадете. Преди още да довърши, една плазмена граната го превръща в пушеща купчина метал, но пък се задейства алармената система на комплекса. Оглушителен вой прониква навсякъде и един гръмък метален глас процепва въздуха:\r\n— НАПАДЕНИЕ СРЕЩУ СЕКТОРА НА ЕНЕРГОБЛОКА! ПРОБИТА Е ЗАЩИТНАТА СИСТЕМА! ВСИЧКИ БОЙНИ ГРУПИ И ПАТРУЛНИТЕ КОЛИ ДА СЕ НАСОЧАТ КЪМ РАЙОНА НА ПРОБИВА! ОБКРЪЖЕТЕ И ИЗОЛИРАЙТЕ СЕКТОРА! ВСИЧКИ ОБЕКТИ ОТ КЛАС „А“, „В“ И „С“ ДА БЪДАТ БЛОКИРАНИ!\r\n— Аха, попаднали сме точно на място! — отбелязваш доволен. Въпреки бързата реакция на системата за отбрана, охраната е напълно изненадана и неподготвена, което ти дава възможност да определиш обекта за атака. Но преди това…";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode147Chois1()
+		{
+			int currEpizodeId = 147;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "И така, съществуват три възможни варианта за действие и само върху теб пада отговорността на правилния избор.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode148Chois1()
+		{
+			int currEpizodeId = 148;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "— Слушайте сега! — обръщаш се към хората си. — След малко вие започнете също леко да почуквате отвътре и бавно да отмествате панела, все едно, че ще излизате. През това време аз ще се измъкна ето оттам и ще се опитам да разбера какво става. Бъдете готови за бързо нападение!\r\nСлед като отиваш до един от ъглите на колибата, даваш знак на хората си да започнат. Веднага щом те се схващат да вдигат шум според плана, ти внимателно разширяваш един от отворите и леко изпълзяваш навън. Внимателно подаваш глава и първото нещо, което виждаш, са два боси крака и тежката стрела на арбалет с особена конструкция, насочена към теб. Значи все пак са били хора, и то от местните.\r\nВсе пак имаш време за едно бързо действие.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode148Chois2()
+		{
+			int currEpizodeId = 148;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "— Внимание, пригответе бластерите! — командваш тихо. — При три разбиваме покрива и скачаме навън. Готови! Едно… две… три!\r\nС енергичен скок и мощен тласък листът, служещ за покрив, е отхвърлен и стиснали здраво бластерите, се оглеждате бързо, след което се спирате озадачени. Гледката наистина е необичайна и дори стряскаща.\r\nДо колибата са застанали две, меко казано, странни, явно човекоподобни същества. Ниски и крехки на вид, с непропорционално дълги крайници, сплескани странично удължени глави, те пъргаво отскачат настрани и насочват подобни на арбалети оръжия. Встрани от тях, малко по-назад, от гъстата мъгла изплува трета такава фигура и също вдига оръжието си.\r\nВ един кратък миг всички замръзват подобно на странна скулптурна композиция и ти имаш време да вземеш решение.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode149Chois1()
+		{
+			int currEpizodeId = 149;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Тежкият няколкодневен преход през кошмарната, заливана от почти непрестанен дъжд, джунгла ви дава отлична възможност взаимно да се опознаете и прецените възможностите си. Външният вид на новите ти съюзници е силно обезобразен от продължилата много поколения генетична мутация. Телата им са дребни и слаби, с тесни, сплескани странично гърди. Краката им са дълги, с много широки стъпала и свързани с ципа пръсти. Гъвкавите, сръчни пръсти на още по-дългите им ръце също са частично свързани с по-малка ципа. Най-странно изглеждат обаче главите им, продълговати и със силно изтеглен назад тил и две големи изпъкнали очи, разположени така, че могат да виждат почти на всички посоки, без да се обръщат. Устата са с тесни, стиснати устни, носът е почти незабележим, сведен до малка издутина с две коси цепки, затварящи се с ципа, ушите са големи, остри и много подвижни. Въобще местните приличат на странни, странично сплескани жаби, но както се оказва, идеално приспособени за условията на свят, покрит с блата и наводнени джунгли.\r\nНо, разбира се, не видът им е това, което привлича вниманието ти; галактиката е пълна и с много по-странни същества. Най-силно си поразен от оръжията им. На пръв поглед приличат на обикновени примитивни арбалети, но вместо с обичайния лък стрелите се изстрелват от полето на силен електромагнитен генератор. Самите стрели са къси и дебели, с вградена в тях мощна кондензаторна батерия. Ударната сила на оръжието е сравнително малка, но в поразяващите възможности на електрическата стрела се убеждаваш още първия ден, когато ловците повалят само с два изстрела голямо колкото слон и бронирано с дебели костни плочки животно.\r\nНай-невероятното обаче е, че дългата широка тръба, снабдена с удобна ръкохватка, се оказва стар термичен бластер от времето на империята. Загадка остава как са успели да го запазят изправен няколко века. Друго, не по-малко загадъчно обстоятелство, е как успяват да намират енергия за стрелите и особено за бластера.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode150Chois1()
+		{
+			int currEpizodeId = 150;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Останалата част от нощта преминава без повече премеждия. Когато първите лъчи на слънцето започват да разпръскват мрака, тихо, но отчетливо почукване по стените на колибата ви кара моментално да се събудите и да замрете напрегнато. След кратка пауза чукането се подновява, като сега е съпроводено с леко драскане и разклащане на стените сякаш някой се опитва предпазливо да си пробие път.\r\n— Какво ще правим, командире? — тихо пита един от рейнджърите.\r\n— Пригответе бластерите! И тихо, може да е само някакво животно! — нареждаш ти и се замисляш.\r\nЗасега виждаш само два възможни изхода.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode151Chois1()
+		{
+			int currEpizodeId = 151;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Унищожили сте част от противниковите сили, но комплексът си остава една снабдена с най-модерни средства за защита крепост. Там обезателно ще се разтревожат от липсата на „ловеца“ и ще вдигнат тревога. Разбира се, може да решат, че е станала катастрофа или е повреден от местните — нали там никой не знае за вас. Но каквото и да мислят, непременно ще засилят мерките за сигурност.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode152Chois1()
+		{
+			int currEpizodeId = 152;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Всички сте съгласни, че разрушаването на комплекса е най-важно. Без повече колебание задействаш мината и под звуците и светлините на алармената система с бой нахлувате в командната зала на енергоцентралата.\r\nИ така, превзел си най-важния обект на комплекса. Сигналната охранителна система е обявила всеобща тревога и атаката на охраната няма да закъснее. Нямаш достатъчно сили за сражение, затова бързо решавай.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode152Chois2()
+		{
+			int currEpizodeId = 152;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			this.playerStatus.Checksums[1] = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Докато кибернетикът се мъчи с електронната ключалка, ти трябва отново да провериш късмета си.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode153Chois1()
+		{
+			int currEpizodeId = 153;
+			string currentChois = 1.ToString();
+			bool isTest = true;
+			int testrandomChois = 1;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Изстрелите на прехващача пробиват на няколко места турбоплатформата и толкова. Малката бърза машина не е пригодена за нападение на земни цели и докато обърне и подходи за нова атака, вие сте кацнали и сте напуснали турбоплатформите.\r\nЗа съжаление, късметът те изоставя в такъв решителен миг и единствено ти от цялата ви малка армия си пострадал. Точно в момента, когато напускаш турбоплатформата, един кратък лазерен импулс те пронизва и поваля мъртъв.\r\nДали останалите без командир рейнджъри ще се справят, така и няма да разбереш. Това е краят на мисията ти; провалил те е единствено лошият ти късмет.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode153Chois2()
+		{
+			int currEpizodeId = 153;
+			string currentChois = 1.ToString();
+			bool isTest = true;
+			int testrandomChois = 2;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Изстрелите на прехващача пробиват на няколко места турбоплатформата и толкова. Малката бърза машина не е пригодена за нападение на земни цели и докато обърне и подходи за нова атака, вие сте кацнали и сте напуснали турбоплатформите без загуби. Само след няколко секунди се появява и лек щурмови изтребител, който засипва празните машини с ракети, без да ви навреди ни най-малко.\r\nИзбрал си за приземяване района на западната ограда главно поради обстоятелството, че там е енергостанцията на комплекса. Тя представлява стар термоядрен магнито-хидродинамичен реактор от времето на империята, който е практически вечен и лесен за поддържане. Смяташ, че повреждането на системата за дозиране и контрол на реакцията ще предизвика мощен термоядрен взрив, който ще унищожи комплекса. Ако всичко върви добре, ще успеете да се измъкнете и отдалечите преди взрива.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode153Chois2ThrowException()
+		{
+			int currEpizodeId = 153;
+			string currentChois = 2.ToString();
+			bool isTest = true;
+			int testrandomChois = 2;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			Assert.Throws<OutOfMemoryException>(() => game.GameAction());
+		}
+
+		[Test]
+		public void TestEpizode154Chois1()
+		{
+			int currEpizodeId = 154;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "След като решението да проникнеш в комплекса през тунела е взето окончателно, племето се заема с всички сили да ви помогне и подсигури, доколкото му позволяват възможностите. При катастрофата сте загубили основното си въоръжение, но въпреки това категорично отказваш да вземеш тежките и неудобни термични бластери на ловците. Леките и безшумни електрически арбалети ти се струват много по-ефикасни за тайна диверсия. Те, заедно с внушителен комплект стрели и личните ви бластери, ще бъдат единственото ви оръжие. За преодоляване на непредвидени препятствия от няколко плазмени акумулатора сте сглобили нещо като термична мина. Като прибавите и джобния микрокомпютърен анализатор на кибернетико, това е всичко, с което разполагате.\r\nДостигането до тунела и промъкването през него минават учудващо леко и безпроблемно. В момента ти, кибернетикът и тримата рейнджъри сте залегнали близо до изхода му и внимателно следите спрялата наблизо патрулна кола. Вече почти час тя не дава признаци на живот, така че не е известно дали в нея въобще има някой.\r\nВремето напредва и ти трябва да решиш.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode155Chois1()
+		{
+			int currEpizodeId = 155;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 2;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "В комплекса обезателно ще се разтревожат от липсата на „ловеца“ и ще вдигнат тревога. Така че бързо решавай.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode156Chois1()
+		{
+			int currEpizodeId = 156;
+			string currentChois = 1.ToString();
+			bool isTest = true;
+			int testrandomChois = 1;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "— По-добре е да помислите как ще оправдаете пропускането им при кацането — злорадо подмята полковникът.\r\n— Ами ако са „СТАР РЕЙНДЖЪРС“? — подмята, уж нехайно, един от пилотите на капитана.\r\n— Каква работа имат тук „СТАР РЕЙНДЖЪРС“? — обезпокоен пита полковникът. — Ние сме извън границите на ФЕДЕРАЦИЯТА.\r\n— Откъде да знам! — злобно отговаря капитанът. — Преди време насам се навъртаха федерални сонди-разузнавачи. Е, какво решавате, полковник?\r\n— Нека да се спуснат в района на бараките! — решава се накрая полковникът. — Заповядайте им да не напускат машините, докато не пристигне патрулът!\r\nЗаповедта е дадена и в момента няма как да не се подчиниш. Вече си забелязал изскочилия от облаците изтребител-прехващач, който ви ескортира до мястото на приземяването ви.\r\nСлед няколко минути турбоплатформите са заобиколени от двадесетина войници и силен металически глас прогърмява:\r\n— ВНИМАНИЕ! ДО ЕКИПАЖА НА ПЛАТФОРМА LTR — 3! ИЗЛЕЗТЕ ЕДИН ПО ЕДИН, БЕЗ ОРЪЖИЕ! СТРОЙТЕ СЕ С ЛИЦЕ КЪМ ОГРАДАТА! ПРИ НЕПОДЧИНЕНИЕ ЩЕ ВИ УНИЩОЖИМ!\r\n— Какво си мислят тези, бе? — обажда се един от рейнджърите.\r\n— Тихо там! — скастря го веднага сержантът. — Само осемнадесет са, сър. Оттук оръжието им прилича на автомати MAG 77. Ще ги нападнем ли?\r\nИмаш временна отсрочка да избереш начин на действие.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode156Chois2()
+		{
+			int currEpizodeId = 156;
+			string currentChois = 1.ToString();
+			bool isTest = true;
+			int testrandomChois = 2;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "— По-добре е да помислите как ще оправдаете пропускането им при кацането! — злорадо подмята полковникът.\r\n— Ами ако са „СТАР РЕЙНДЖЪРС“? — подмята уж нехайно един от пилотите на капитана.\r\n— Каква работа имат тук „СТАР РЕЙНДЖЪРС“? — обезпокоен пита полковникът. — Ние сме извън границите на ФЕДЕРАЦИЯТА.\r\n— Откъде да знам! — злобно отговаря капитанът. — Преди време насам се навъртаха федерални сонди-разузнавачи. Е, какво решавате, полковник?\r\n— Добре, капитане, печелите! — отвръща след кратък размисъл той. — Но ако излезе, че са били наши хора, мислете му!\r\nБез повече да обръща внимание на уплашеното началство, капитанът се доближава до комуникатора и дава няколко кратки заповеди.\r\n— Приземяват се, сър! — вика уплашено наблюдателят. — В района на енергоблока.\r\nДокато трае разправията, вие сте преминали над оградата и вече почти сте се спуснали. В момента, когато първата машина докосва земята, от ниските облаци с рев се стрелва малък изтребител-прехващач и лъчите на бластерите му се впиват в корпуса на турбоплатформата.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode156Chois3()
+		{
+			int currEpizodeId = 156;
+			string currentChois = 1.ToString();
+			bool isTest = true;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "— Край на обсъждането! — злорадо обявява полковникът. — Наредете на изтребителя да се прибира! — това към почервенелия от яд капитан. — Дежурен, кажете им да се приземят до бараките! Само пожар ни липсва — мърмори на себе си.\r\n— А Вие, капитане, помислете как ще обясните, че сте изпуснали приземяването на кораба им! — злобно казва на по-младия си колега той.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode157Chois1()
+		{
+			int currEpizodeId = 157;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = " ";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode157Chois2()
+		{
+			int currEpizodeId = 157;
+			string currentChois = 2.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Изчакваш колите да се отдалечат достатъчно и като оставяш засада, която да следи за евентуалното им връщане, нападаш срещу западната страна на оградата, близо до недовършения тунел на ловците. Изборът ти се основава главно на обстоятелството, че там е енергостанцията на комплекса. Тя представлява стар термоядрен магнито-хидродинамичен реактор от времето на империята, който е практически вечен и лесен за поддържане. Смяташ, че повреждането на системата за дозиране и контрол на реакцията ще предизвика мощен термоядрен взрив, който ще унищожи комплекса. Ако всичко върви добре, ще успеете да се измъкнете и отдалечите преди взрива.\r\nДори без да прибягвате до тежкото си въоръжение, лесно се справяте със защитната ограда и нахлувате в комплекса.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode157Chois3()
+		{
+			int currEpizodeId = 157;
+			string currentChois = 3.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Единственият начин да плените машините, без да ги повредите, е да избиете войниците с леките лазерни бластери.";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode158Chois1()
+		{
+			int currEpizodeId = 158;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Първото нещо, изпречило се на пътя ви, е брониран патрулен робот, който съгласно заложената в него програма нарежда да се предадете. Преди още да довърши, една плазмена граната го превръща в пушеща купчина метал, но пък се задейства алармената система на комплекса. Оглушителен вой прониква навсякъде и един гръмък метален глас процепва въздуха:\r\n— НАПАДЕНИЕ СРЕЩУ СЕКТОРА НА ЕНЕРГОБЛОКА! ПРОБИТА Е ЗАЩИТНАТА СИСТЕМА! ВСИЧКИ БОЙНИ ГРУПИ И ПАТРУЛНИТЕ КОЛИ ДА СЕ НАСОЧАТ КЪМ РАЙОНА НА ПРОБИВА! ОБКРЪЖЕТЕ И ИЗОЛИРАЙТЕ СЕКТОРА! ВСИЧКИ ОБЕКТИ ОТ КЛАС „А“, „В“ И „С“ ДА БЪДАТ БЛОКИРАНИ!\r\n— Аха, попаднали сме точно на място! — отбелязваш доволен. Въпреки бързата реакция на системата за отбрана, охраната е напълно изненадана и неподготвена, което ти дава възможност да определиш обекта за атака. Но преди това…";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode159Chois1()
+		{
+			int currEpizodeId = 159;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			expectedPlayerStatus.Checksums[1] = 0;
+			expectedPlayerStatus.Checksums[2] = 0;
+			expectedPlayerStatus.Checksums[3] = 0;
+			expectedPlayerStatus.Checksums[4] = 0;
+			expectedPlayerStatus.Checksums[5] = 0;
+			expectedPlayerStatus.Checksums[6] = 0;
+			expectedPlayerStatus.Checksums[7] = 0;
+			expectedPlayerStatus.Checksums[8] = 0;
+			expectedPlayerStatus.Checksums[9] = 0;
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = " ";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
+
+		[Test]
+		public void TestEpizode160Chois1()
+		{
+			int currEpizodeId = 160;
+			string currentChois = 1.ToString();
+			bool isTest = false;
+			int testrandomChois = 3;
+
+			PlayerStatus expectedPlayerStatus = new PlayerStatus();
+			expectedPlayerStatus.Checksums[1] = this.playerStatus.Checksums[1];
+			expectedPlayerStatus.Checksums[2] = this.playerStatus.Checksums[2];
+			expectedPlayerStatus.Checksums[3] = this.playerStatus.Checksums[3];
+			expectedPlayerStatus.Checksums[4] = this.playerStatus.Checksums[4];
+			expectedPlayerStatus.Checksums[5] = this.playerStatus.Checksums[5];
+			expectedPlayerStatus.Checksums[6] = this.playerStatus.Checksums[6];
+			expectedPlayerStatus.Checksums[7] = this.playerStatus.Checksums[7];
+			expectedPlayerStatus.Checksums[8] = this.playerStatus.Checksums[8];
+			expectedPlayerStatus.Checksums[9] = this.playerStatus.Checksums[9];
+
+			ITestData testData = new TestGameStarShips.TestData.TestData(currEpizodeId, this.playerStatus, isTest, testrandomChois);
+
+			Game game = new Game(this.read, this.write, testData);
+			this.read.Result = currentChois;
+			game.GameAction();
+
+			string expectedDescription = "Възможностите за придвижване до комплекса са:";
+
+			string factDescriptions = game.CurrentEpizodeModel.Decription;
+
+			Assert.AreEqual(expectedDescription, factDescriptions);
+
+			string expectedPoint = string.Join("-", expectedPlayerStatus.Checksums);
+
+			string factPoint = string.Join("-", game.PlayerStatus.Checksums);
+
+			Assert.AreEqual(expectedPoint, factPoint);
+
+			int expectedResult = expectedPlayerStatus.TottalResult;
+
+			int factResult = game.PlayerStatus.TottalResult;
+
+			Assert.AreEqual(expectedResult, factResult);
+		}
 	}
 }

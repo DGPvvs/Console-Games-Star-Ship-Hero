@@ -3513,7 +3513,7 @@
         "ChoisPoint": 0,
         "Decription": "Като последна възможност ти остава кибернетикът да отвори ключалката, стига да успее навреме.",
         "PostActionFlags": "Zero",
-        "ActionValue": 6,
+        "ActionValue": 5,
         "PreActionFlags": "IfThirdChecksumIsGreaterOrEqualToActionValue",
         "VisibleValue": 0
       }
