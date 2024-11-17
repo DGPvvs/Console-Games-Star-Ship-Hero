@@ -96,6 +96,11 @@
 		/// <summary>
 		/// Ако първа контролна сума е равна на ConditionValue или ConditionValue2 или ConditionValue3
 		/// </summary>
-		IfFirstChecksumIsEqualToConditionValueOrConditionValue2OrConditionValue3 = 0x00020000
+		IfFirstChecksumIsEqualToConditionValueOrConditionValue2OrConditionValue3 = 0x00020000,
+
+		/// <summary>
+		/// Прибави ConditionValue към трета контролна сума
+		/// </summary>
+		AddConditionValueToThirdChecksum = 0x00040000,
 	}
 }

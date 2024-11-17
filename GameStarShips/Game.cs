@@ -192,6 +192,11 @@
 				{
 					condition = this.AddConditionValueToChecksum(condition, this.CurrentEpizodeModel.ConditionValue, CheckSumsIndexEnum.CheckSumsIndex2, ConditionFlagsEnum.AddValueToSecondChecksum);
 				}
+				else if (condition.HasFlag(ConditionFlagsEnum.AddConditionValueToThirdChecksum))
+				{
+					condition = this.AddConditionValueToChecksum(condition, this.CurrentEpizodeModel.ConditionValue, CheckSumsIndexEnum.CheckSumsIndex3, ConditionFlagsEnum.AddConditionValueToThirdChecksum);
+
+				}
 				else if (condition.HasFlag(ConditionFlagsEnum.SecondChecksumЕqualToConditionValue))
 				{
 					int value = this.CurrentEpizodeModel.ConditionValue - this.PlayerStatus.Checksums[(int)CheckSumsIndexEnum.CheckSumsIndex2];
